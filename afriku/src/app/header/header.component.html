@@ -1,0 +1,53 @@
+<nav class="navbar navbar-expand-md  fixed-top navbar-light bg-light">
+    <!-- <a class="navbar-brand" href="#">Navbar w/ text</a> -->
+    <div>
+
+    </div>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarText">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item active" *ngFor="let langues of langues">
+                <a class="nav-link btn pure-material-button-contained" (click)="setClick(langues)" href="#" role="button" id="{{langues.nom}}"> {{langues.nom}} <span class="sr-only">(current)</span></a>
+            </li>
+            <!--   <li class="nav-item">
+                <a class="nav-link btn pure-material-button-contained" href="#" role="button">Francais <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link btn pure-material-button-contained" href="#" role="button">Nerdlandais <span class="sr-only">(current)</span></a>
+            </li> -->
+
+        </ul>
+        <div cla ss="container">
+            <span class="form-inline">
+                <button type="button" id="open" class="btn btn-dark" data-toggle="modal" data-target="#exampleModal">
+                   <span id="clickModal" (click)=" buttonNamehange()">Modal Closed</span>
+            </button>
+            </span>
+        </div>
+
+    </div>
+
+</nav>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Details</h5>
+                <button type="button" (click)="modalClosed()" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+            </div>
+            <div class="modal-body">
+                <b> {{langue.nom}}</b> <br>
+                <span data-localize="NC"><b > Niveau  De Comprehension </b> </span>{{langue.niveauComprehension}} <br>
+                <span data-localize="NP"><b>Niveau Parler</b></span> {{langue.niveauParler}} <br>
+                <span data-localize="NE"> <b>Nivau Ecrit</b></span> {{langue.niveauEcrit}}
+            </div>
+
+        </div>
+    </div>
+</div>

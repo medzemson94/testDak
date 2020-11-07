@@ -1,0 +1,200 @@
+<div>
+    <h1 class="mt-5"><span id="langue"></span></h1>
+</div>
+
+<div>
+    <h6> Ajouter une langue</h6>
+</div>
+
+<div class="row py-4">
+    <div class="col-md-4">
+        <div class="form-group">
+            <div class="form-group">
+                <label for="languechoice" data-localize="CL">Choisir Une Langue*</label>
+                <select class="form-control" id="languechoice" name="langue.nom" [(ngModel)]="langue.nom">
+                <option  selected> Selectionner Une Langue</option>
+                  <option value="francais" >Francais</option>
+                  <option value="anglais">Anglais</option>
+                  <option value="nerlandais">Nerdlandais </option>
+
+                </select>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="form-group">
+                <label for="level" data-localize="NE">Niveau Ecrit*</label>
+                <select class="form-control" id="level" [(ngModel)]="langue.niveauEcrit" name="langue.niveauEcrit">
+                <option  selected> Selectionner Le Niveau</option>
+                  <option value="debutant" >debutant</option>
+                  <option value="intermediaire">intermediaire</option>
+                  <option value="avancé">avancé</option>
+                  
+                </select>
+            </div>
+        </div>
+
+    </div>
+    <div class="col-md-4">
+        <div class="form-group">
+            <div class="form-group">
+                <label for="level" data-localize="NP">Niveau Parlé *</label>
+                <select class="form-control" id="parler" [(ngModel)]="langue.niveauParler" name="langue.niveauParler">
+                <option  selected> Selectionner Le Niveau</option>
+                  
+                  <option value="debutant" >debutant</option>
+                  <option value="intermediaire">intermediaire</option>
+                  <option value="avancé">avancé</option>
+                </select>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="form-group">
+                <label for="level" data-localize="NC"> Niveau Compréhension*</label>
+                <select class="form-control" id="comprehension" [(ngModel)]="langue.niveauComprehension" name="langue.niveauComprehension">
+                <option  selected> Selectionner Le Niveau</option>
+                <option value="debutant" >debutant</option>
+                <option value="intermediaire">intermediaire</option>
+                <option value="avancé">avancé</option>
+                </select>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card text-white bg-primary mb-3" style="max-width: 18rem;height: 10rem;">
+
+            <div class="card-body">
+                <h5 class="card-title text-center" data-localize="NL">Nombre de langue</h5>
+                <p class="card-text text-center">{{nombreLangue}}</p>
+            </div>
+        </div>
+    </div>
+
+</div>
+<div class="row" style="margin-top: -1%;">
+    <div class="col-md-12">
+        <button type="button" (click)="createLanguage()" *ngIf="!bloquer" class="btn btn-primary">Enregistrez</button>
+    </div>
+</div>
+<hr style="-moz-border-bottom-colors: none;
+-moz-border-image: none;
+-moz-border-left-colors: none;
+-moz-border-right-colors: none;
+-moz-border-top-colors: none;
+border-color: #f8f9fa -moz-use-text-color #f8f9fa;
+border-style: solid none;
+border-width: 1px 0;
+margin: 18px 0;">
+
+<div class="row py-4" *ngFor="let langues of langues">
+
+    <div class="col-md-4 ">
+        <b>{{langues.nom}}</b> &nbsp;&nbsp; <span data-localize="NP"><b>Niveau parlé : </b></span> {{langues.niveauParler}}
+    </div>
+    <div class="col-md-4">
+        <b>Niveau ecrit:</b>{{langues.niveauEcrit}} &nbsp;&nbsp; <span data-localize="NC"> <b>Niveau comprehension : </b></span> {{langues.niveauComprehension}}
+    </div>
+    <div class="col-md-4">
+        <button type="button" class="btn btn-success" data-toggle="modal" (click)="getOneLanguage(langues)" data-localize="MOD" data-target="#edit">Modifier</button>&nbsp;
+        <button type="button" class="btn btn-warning" data-toggle="modal" (click)="getOneLanguage(langues)" data-localize="DET" data-target="#details">Details</button>&nbsp;
+        <button type="button" class="btn btn-danger" (click)="deleteLanguage(langues._id)" data-localize="SUP">Supprimer</button>
+
+    </div>
+
+
+</div>
+<div class="modal fade" id="edit" tabindex="-1" role="dialog" aria-labelledby="edit" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel" data-localize="MOD">Modifiez Langue</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+            </div>
+            <div class="modal-body">
+                <div class="row py-4">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <div class="form-group">
+                                <label for="languechoice" data-localize="CL">Choisir Une Langue*</label>
+                                <select class="form-control" id="languechoice" name="langue.nom" value="langue.nom" [(ngModel)]="langue.nom">
+                                <option  selected> Selectionner Une Langue</option>
+                                  <option value="francais" >Francais</option>
+                                  <option value="anglais">Anglais</option>
+                                  <option value="nerlandais">Nerdlandais </option>
+                
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="form-group">
+                                <label for="level" data-localize="NE">Niveau Ecrit*</label>
+                                <select class="form-control" id="level" [(ngModel)]="langue.niveauEcrit" name="langue.niveauEcrit">
+                                <option  selected> Selectionner Le Niveau</option>
+                                  <option value="debutant" >debutant</option>
+                                  <option value="intermediaire">intermediaire</option>
+                                  <option value="avancé">avancé</option>
+                                  
+                                </select>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <div class="form-group">
+                                <label for="level" data-localize="NP">Niveau Parlé *</label>
+                                <select class="form-control" id="parler" [(ngModel)]="langue.niveauParler" name="langue.niveauParler">
+                                <option  selected> Selectionner Le Niveau</option>
+                                  
+                                  <option value="debutant" >debutant</option>
+                                  <option value="intermediaire">intermediaire</option>
+                                  <option value="avancé">avancé</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="form-group">
+                                <label for="level" data-localize="NC">Niveau Compréhension*</label>
+                                <select class="form-control" id="comprehension" [(ngModel)]="langue.niveauComprehension" name="langue.niveauComprehension">
+                                <option  selected> Selectionner Le Niveau</option>
+                                <option value="debutant" >debutant</option>
+                                <option value="intermediaire">intermediaire</option>
+                                <option value="avancé">avancé</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="row" style="margin-top: -1%;">
+                    <div class="col-md-12">
+                        <button type="button" (click)="createLanguage()" class="btn btn-primary" data-localize="MOD">Modifiez</button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="details" tabindex="-1" role="dialog" aria-labelledby="details" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel" data-localize="DET">Details</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+            </div>
+            <div class="modal-body">
+                <b> {{langue.nom}}</b> <br>
+                <span data-localize="NC"><b > Niveau  De Comprehension </b> </span>{{langue.niveauComprehension}} <br>
+                <span data-localize="NP"><b>Niveau Parler</b></span> {{langue.niveauParler}} <br>
+                <span data-localize="NE"> <b>Nivau Ecrit</b></span> {{langue.niveauEcrit}}
+
+            </div>
+
+        </div>
+    </div>
+</div>
